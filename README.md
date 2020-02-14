@@ -1,3 +1,56 @@
+# Taurus Group version
+## Add custom tokens
+- Update src/config.json file by adding your custom token, and mapping with quoted symbol:
+```
+ {
+            "symbol": "tdx",
+            "name": "Test company shares",
+            "primaryColor": "#3333ff",
+            "icon": "assets/icons/weth.svg",
+            "addresses": {
+                "1": "0x51f05954e778fac1855589d16eE9D1467eFD277B",
+                "3": "0x51f05954e778fac1855589d16eE9D1467eFD277B",
+                "4": "0x51f05954e778fac1855589d16eE9D1467eFD277B",
+                "42": "0x51f05954e778fac1855589d16eE9D1467eFD277B",
+                "50": "0x1345851bFa34CF57D028492C9E6d8840eE75E6c9"
+            },
+            "decimals": 0,
+            "displayDecimals": 0
+        },
+```
+```
+ {
+            "base": "tdx",
+            "quote": "echf"
+        },
+```
+- Possibility to add a picto for your custom token by adding a .svg file in src/assets/icons and updating src/config.json file "icon" field.
+- Build a docker image:
+```
+> sudo docker build -t 0xorg/launch-kit-frontend-taurus:4.0 .
+
+```
+- Put the image on the demo server:
+```
+> sudo docker save -o launch-kit-frontend-taurus_40.tar.gz 0xorg/launch-kit-frontend-taurus:4.0
+> ssh root@185.12.7.68 "cat > launch-kit-frontend-taurus_40" < launch-kit-frontend-taurus_40.tar.gz
+
+```
+- From the demo server, load the image:
+```
+> docker load < launch-kit-frontend-taurus_40
+```
+- From the demo server, update the docker-compose.yml file to use the new version of the image
+```
+> cd ganache
+> vi docker-compose.yml
+```
+- From the demo server, docker-up the frontend (**WARNING, it is very important to specify 'frontend', else ganache is restarted and smart contracts are deleted**)
+```
+> docker-compose up --detach frontend
+```
+
+
 # 0x-launch-kit-frontend
 
 [![CircleCI](https://circleci.com/gh/0xProject/0x-launch-kit-frontend.svg?style=svg)](https://circleci.com/gh/0xProject/0x-launch-kit-frontend)
