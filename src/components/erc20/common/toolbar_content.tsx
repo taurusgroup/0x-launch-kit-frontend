@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactSVG from 'react-svg';
 import styled, { withTheme } from 'styled-components';
 
-import { ReactComponent as LogoSvg } from '../../../assets/icons/erc20_logo.svg';
+import { ReactComponent as LogoSvg } from '../../../assets/icons/taurus-logo.svg';
 import { Config } from '../../../common/config';
 import { UI_GENERAL_TITLE } from '../../../common/constants';
 import { Logo } from '../../../components/common/logo';
